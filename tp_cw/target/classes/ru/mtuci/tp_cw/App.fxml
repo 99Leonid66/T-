@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.collections.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane id="MainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="800.0" minWidth="1200.0" prefHeight="800.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/2.2" fx:controller="ru.mtuci.tp_cw.MainController">
+  <children>
+    <GridPane alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <children>
+        <LineChart fx:id="chart" createSymbols="true" depthTest="INHERIT" pickOnBounds="true" style="-fx-padding: 0 0 5px 5px;" translateX="5.0" GridPane.columnIndex="0" GridPane.rowIndex="1">
+          <xAxis>
+            <NumberAxis side="BOTTOM" />
+          </xAxis>
+          <yAxis>
+            <NumberAxis side="LEFT" />
+          </yAxis>
+        </LineChart>
+        <GridPane style="" GridPane.columnIndex="0" GridPane.rowIndex="0">
+          <children>
+            <Label fx:id="activeChartTitleLabel" text="" GridPane.columnIndex="0" GridPane.rowIndex="0">
+              <font>
+                <Font name="Roboto Condensed Bold" size="30.0" />
+              </font>
+              <GridPane.margin>
+                <Insets left="20.0" />
+              </GridPane.margin>
+            </Label>
+            <ImageView fitHeight="20.0" fitWidth="20.0" onMouseClicked="#onChartExport" opacity="0.5" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: hand;" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="0">
+              <image>
+                <Image url="@share.png" />
+              </image>
+            </ImageView>
+          </children>
+          <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="780.0" minWidth="100.0" prefWidth="755.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="85.0" />
+          </columnConstraints>
+          <rowConstraints>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          </rowConstraints>
+        </GridPane>
+        <ToolBar focusTraversable="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="134.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="141.0" style="-fx-background-color:  linear-gradient(to top right, rgba(229,104,240,1), rgba(254,182,69,1));&#10;-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 10, 0.5, 0.0, 0.0);&#10;-fx-padding: 20px;" GridPane.columnIndex="1" GridPane.columnSpan="2147483647" GridPane.rowIndex="0" GridPane.rowSpan="3">
+          <items>
+            <GridPane alignment="BASELINE_RIGHT">
+              <children>
+                <Label opacity="0.5" text="Data" textFill="BLACK" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                  <font>
+                    <Font name="Roboto Condensed Bold" size="25.0" fx:id="x2" />
+                  </font>
+                </Label>
+                <Label fx:id="entriesNumberLabel" text="0" textAlignment="RIGHT" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="0">
+                  <font>
+                    <Font name="Roboto Thin" size="15.0" />
+                  </font>
+                  <GridPane.margin>
+                    <Insets />
+                  </GridPane.margin>
+                </Label>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <Button graphicTextGap="4.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onAddFromLogs" style="-fx-background-color: rgba(255, 255, 255, .2);&#10;-fx-padding: 10px;&#10;-fx-cursor: hand;" text="Add From Logs">
+              <font>
+                <Font name="Roboto Light" size="15.0" fx:id="x1" />
+              </font>
+            </Button>
+            <GridPane alignment="BASELINE_RIGHT">
+              <children>
+                <Button font="$x1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onApproximateTo" style="-fx-background-color: rgba(255, 255, 255, .2);&#10;-fx-padding: 10px;&#10;-fx-cursor: hand;" text="Approximate To" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <TextField fx:id="approximateToField" maxHeight="-1.0" maxWidth="1.7976931348623157E308" onAction="#onApproximateTo" prefHeight="40.0" prefWidth="200.0" promptText="Number" style="-fx-background-color: rgba(255, 255, 255, .2);&#10;&#10;-fx-font-size: 15px;&#10;-fx-font-family: &quot;Roboto Thin&quot;;" text="1000000" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                  <GridPane.margin>
+                    <Insets bottom="-5.0" left="5.0" top="-5.0" />
+                  </GridPane.margin>
+                </TextField>
+              </children>
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+              </columnConstraints>
+              <padding>
+                <Insets bottom="6.0" top="6.0" />
+              </padding>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <Button id="clearBtn" font="$x1" graphicTextGap="4.0" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onClear" style="-fx-background-color: rgba(255, 255, 255, .2);&#10;-fx-padding: 10px;&#10;-fx-cursor: hand;" text="Truncate DB and clear in-memory list" />
+            <Label font="$x2" opacity="0.5" style="-fx-padding: 15px 0 0 0;" text="Chart" textFill="BLACK" />
+            <ChoiceBox fx:id="chartTypeChoiceBox" value="Volume(Density)" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(255, 255, 255, .2);&#10;-fx-font-size: 15;&#10;-fx-cursor: hand;&#10;-fx-font-family: &quot;Roboto Thin&quot;;&#10;-fx-padding: 10px;">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Volume(Density)" />
+                        <String fx:value="Speed(Distance)" />
+                        <String fx:value="Speed(Density)" />
+                    </FXCollections>
+                </items>
+            </ChoiceBox>
+            <ChoiceBox fx:id="laneChoiceBox" maxWidth="1.7976931348623157E308" style="-fx-background-color: rgba(255, 255, 255, .2);&#10;-fx-font-size: 15;&#10;-fx-cursor: hand;&#10;-fx-font-family: &quot;Roboto Thin&quot;;&#10;-fx-padding: 10px;" />
+            <Button font="$x1" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#onDraw" style="-fx-background-color: rgba(255, 255, 255, .2);&#10;-fx-padding: 10px;&#10;-fx-cursor: hand;" text="Draw" />
+            <Label font="$x2" opacity="0.5" style="-fx-padding: 15px 0 0 0;" text="Analysis" textFill="BLACK" />
+            <Label fx:id="analysisTextOutputLabel" prefHeight="-1.0" prefWidth="320.0" text="Nothing now">
+              <font>
+                <Font name="Roboto Thin" size="18.0" fx:id="x3" />
+              </font>
+            </Label>
+            <Label font="$x2" opacity="0.5" style="-fx-padding: 15px 0 0 0;" text="Current Task" textFill="BLACK" />
+            <Label id="analysisTextOutputLabel" fx:id="currentTaskLabel" font="$x3" prefHeight="-1.0" prefWidth="320.0" text="Nothing now" wrapText="true" />
+          </items>
+          <GridPane.margin>
+            <Insets />
+          </GridPane.margin>
+        </ToolBar>
+        <ProgressBar fx:id="progressBar" maxWidth="1.7976931348623157E308" minHeight="10.0" mouseTransparent="true" pickOnBounds="false" prefHeight="10.0" prefWidth="-1.0" style="-fx-accent: rgba(229,104,240,1); -fx-border-width: 0; -fx-padding: 0" visible="false" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="2" GridPane.vgrow="SOMETIMES" />
+      </children>
+      <columnConstraints>
+        <ColumnConstraints halignment="LEFT" hgrow="SOMETIMES" maxWidth="477.0" minWidth="10.0" percentWidth="70.0" prefWidth="413.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="298.0" minWidth="100.0" percentWidth="30.0" prefWidth="187.0" />
+      </columnConstraints>
+      <rowConstraints>
+        <RowConstraints maxHeight="161.0" minHeight="10.0" percentHeight="10.0" prefHeight="130.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="409.0" minHeight="10.0" percentHeight="89.0" prefHeight="408.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="10.0" minHeight="0.0" percentHeight="1.0" prefHeight="10.0" vgrow="SOMETIMES" />
+      </rowConstraints>
+    </GridPane>
+  </children>
+</AnchorPane>
